@@ -8,19 +8,19 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class OrderSystemTest {
 
     @Test
-    void addMenu_whenAddMenu_thenOrderSystemcontainsMenu() {
+    void addMenu_whenAddMenu_thenOrderSystemContainsMenu() {
         // GIVEN
         OrderSystem orderSystem = new OrderSystem();
         Menu menu1a = new Menu("Hühnchen mit Reis", "Hühnchen", "Reis", "Wasser", 6.50);
 
         // WHEN
         orderSystem.addMenu("1a", menu1a);
-        Menu result = orderSystem.getOrderById("1a");
+        Menu actual = orderSystem.getOrderById("1a");
 
         // THEN
         Menu expected = new Menu("Hühnchen mit Reis", "Hühnchen", "Reis", "Wasser", 6.50);
 
-        assertEquals(expected, result);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -39,16 +39,15 @@ class OrderSystemTest {
         assertEquals(expected, result);
     }
 
-
     @Test
     void getOrderById_whenKeyDoesNotExist_ReturnException() {
         // GIVEN
-        OrderSystem orderSystem = new OrderSystem();
+        OrderSystem myLittleOrderSystem = new OrderSystem();
         Menu menu1a = new Menu("Hühnchen mit Reis", "Hühnchen", "Reis", "Wasser", 6.50);
-        orderSystem.addMenu("1a", menu1a);
+        myLittleOrderSystem.addMenu("1a", menu1a);
 
         // WHEN // THEN
-        assertThrows(NoSuchElementException.class, () -> orderSystem.getOrderById("UNKNOWN_KEY"));
+        assertThrows(NoSuchElementException.class, () -> myLittleOrderSystem.getOrderById("QuatschKey"));
     }
 
     @Test

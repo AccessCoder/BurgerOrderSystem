@@ -20,20 +20,40 @@ public class Menu {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getMainDish() {
         return mainDish;
+    }
+
+    public void setMainDish(String mainDish) {
+        this.mainDish = mainDish;
     }
 
     public String getSideDish() {
         return sideDish;
     }
 
+    public void setSideDish(String sideDish) {
+        this.sideDish = sideDish;
+    }
+
     public String getBeverage() {
         return beverage;
     }
 
+    public void setBeverage(String beverage) {
+        this.beverage = beverage;
+    }
+
     public double getPrice() {
         return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     @Override
@@ -54,6 +74,7 @@ public class Menu {
         return name + " " +
                 mainDish + " " +
                 sideDish + " " +
-                beverage + " ";
+                beverage + " " +
+                price + " ";
     }
 }

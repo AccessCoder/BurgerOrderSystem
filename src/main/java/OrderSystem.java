@@ -5,41 +5,37 @@ import java.util.Scanner;
 
 public class OrderSystem {
 
-    private Map<String, Menu> menus = new HashMap<>();
+    private final Map<String, Menu> menus = new HashMap<>();
 
-    public OrderSystem() {
-        super();
-    }
 
-    public String addMenu(String menuKey, Menu menu) {
+    public void addMenu(String menuKey, Menu menu) {
         menus.put(menuKey, menu);
-        return menu.getName();
-    }
-
-    public String placeOrder() {
-        System.out.println("Please choose a menu from: " + this);
-        Scanner scanner = new Scanner(System.in);
-
-        try {
-            String chosenMenu = scanner.nextLine();
-            return getOrderById(chosenMenu).getName();
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return placeOrder();
-        }
     }
 
     public Menu getOrderById(String id) {
         if (menus.containsKey(id)) {
-            Menu order = menus.get(id);
+            return menus.get(id);
 
-            System.out.println("\nYou have ordered: \n");
-            System.out.println(order.toString() + "\n");
-            System.out.println("That's " + order.getPrice() + "€ please :)");
-            return order;
         } else {
             throw new NoSuchElementException("Menu doesn't exist!");
+        }
+    }
+
+    public void placeOrder() {
+        System.out.println("Please choose a menu from: " + this);
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            String chosenKey = scanner.nextLine();
+            Menu chosenMenu = getOrderById(chosenKey);
+
+            System.out.println("\nYou have ordered: \n");
+            System.out.println(chosenMenu + "\n");
+            System.out.println("That's " + chosenMenu.getPrice() + "€ please :)");
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            placeOrder();
         }
     }
 
@@ -47,7 +43,7 @@ public class OrderSystem {
     public String toString() {
         String menusAsString = "";
         for (String key : menus.keySet()) {
-            menusAsString += "\n" + "[" + key + "] " + menus.get(key);
+            menusAsString += "\n" + "[" + key + "] " + menus.get(key).toString();
         }
         return menusAsString;
     }

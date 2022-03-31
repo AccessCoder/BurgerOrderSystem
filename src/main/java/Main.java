@@ -16,7 +16,7 @@ public class Main {
         burgerStore.addMenu("3", menu3);
         burgerStore.addMenu("4", menu4);
         burgerStore.addMenu("5", menu5);
-        burgerStore.addMenu("6", menu6);
+        burgerStore.addMenu("F", menu6);
 
         burgerStore.placeOrder();
     }
