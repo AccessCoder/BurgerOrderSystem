@@ -1,53 +1,59 @@
+import java.util.Objects;
+
 public class Menu {
 
-    private String MenuName;
-    private String MainDish;
-    private String SideDish;
+    private String name;
+    private String mainDish;
+    private String sideDish;
     private String beverage;
-    private String Bonus;
     private double price;
 
-    public Menu(String menuName, String mainDish, String sideDish, String beverage, String bonus, double price) {
-        this.MenuName = menuName;
-        this.MainDish = mainDish;
-        this.SideDish = sideDish;
+    public Menu(String menuName, String mainDish, String sideDish, String beverage, double price) {
+        this.name = menuName;
+        this.mainDish = mainDish;
+        this.sideDish = sideDish;
         this.beverage = beverage;
-        this.Bonus = bonus;
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return    "You ordered the: " + MenuName + '\n' +
-                "it contains:\n"+
-                MainDish + '\n' +
-                SideDish + '\n' +
-                beverage + '\n' +
-                Bonus + '\n' +
-                "That´s "+ price +"€, please!";
-    }
-
-    public String getMenuName() {
-        return MenuName;
+    public String getName() {
+        return name;
     }
 
     public String getMainDish() {
-        return MainDish;
+        return mainDish;
     }
 
     public String getSideDish() {
-        return SideDish;
+        return sideDish;
     }
 
     public String getBeverage() {
         return beverage;
     }
 
-    public String getBonus() {
-        return Bonus;
-    }
-
     public double getPrice() {
         return price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Menu menu = (Menu) o;
+        return Double.compare(menu.getPrice(), getPrice()) == 0 && Objects.equals(getName(), menu.getName()) && Objects.equals(getMainDish(), menu.getMainDish()) && Objects.equals(getSideDish(), menu.getSideDish()) && Objects.equals(getBeverage(), menu.getBeverage());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getMainDish(), getSideDish(), getBeverage(), getPrice());
+    }
+
+    @Override
+    public String toString() {
+        return name + " " +
+                mainDish + " " +
+                sideDish + " " +
+                beverage + " ";
     }
 }
